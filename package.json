@@ -1,0 +1,17 @@
+{
+  "name": "namecheap-market-ai-picker",
+  "version": "1.0.0",
+  "description": "This software scans through domains for auctaion daily and pushes and domains that I should be aware of to an RSS feed which then will land on my phone.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "node-fetch": "^3.3.2",
+    "openai": "^4.24.2"
+  }
+}
