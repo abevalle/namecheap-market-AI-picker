@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  app:
+    image: node:latest
+    container_name: namecheap-market-ai-picker
+    volumes:
+      - .:/usr/src/app
+    working_dir: /usr/src/app
+    environment:
+      - NODE_ENV=production
+    command: node index.js
+    ports:
+      - "3000:3000" # Change this if your app uses a different port
+    restart: unless-stopped

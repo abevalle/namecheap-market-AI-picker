@@ -69,9 +69,9 @@ const main = async () => {
         }));
         let domainApproval = await getDomainHotOrNot(JSON.stringify(domains))
         let response = (domainApproval.choices[0].message)
-        let content = await toBase64(domainApproval.choices[0].message.content)
-        console.log({response: response, content: content})
-        sendMail(content)
+        let dataUrl = await toBase64(domainApproval.choices[0].message.content)
+        console.log({response: response, dataUrl: dataUrl})
+        await sendMail(process.env.SEND_TO, dataUrl)
     } catch (error) {
         console.error(`Error: ${error.message}`);
     }

@@ -13,7 +13,7 @@ export const getDomainHotOrNot = async (message) => {
     "sell a business. \n\nThese domains should contain real words or different spellings of real words. " +
     "don't forget to add the link to the auction site and its current price for reference. You must include as many " +
     "domains as possible.\n\n" +
-    "You can only respond with nice html email. You can only skip non-sense random letter romains. Disregard any length limitations"
+    "You can only respond in sanatized CSV. You can only skip non-sense random letter romains. Disregard any length limitations"
     const response = await openai.chat.completions.create({
         model: "gpt-3.5-turbo-16k",
         messages: [

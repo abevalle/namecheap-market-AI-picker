@@ -13,7 +13,7 @@ const transporter = NodeMailer.createTransport({
   });
 
 
-export const sendMail = async (reciever, htmlStringData = "<p>Nothing Here</p>") => {
+export const sendMail = async (reciever, dataUrl = "<p>Nothing Here</p>") => {
     // send mail with defined transport object
     const info = await transporter.sendMail({
       from: '"Auction AI 👻" <domain-auction@valle.us>', // sender address
@@ -21,8 +21,8 @@ export const sendMail = async (reciever, htmlStringData = "<p>Nothing Here</p>")
       subject: "Hello ✔ Here's your Domain List", // Subject line
       text: "Hello world?", // plain text body
       html: "<b>Here is your daily auction list</b>"
-      + "</br>"
-      + htmlStringData,
+      + "<br></br>"
+      + `<p><a href=\"${dataUrl}\">Domain List Download</a></p>`
     });
   
     console.log("Message sent: %s", info.messageId);
