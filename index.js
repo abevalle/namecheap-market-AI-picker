@@ -2,8 +2,8 @@ import 'dotenv/config';
 import fetch from 'node-fetch';
 import { getDomainHotOrNot } from './openAi.js';
 import { namecheapApiCall } from './namecheap.js'
-import { toBase64 } from './toFile.js'
-import { sendMail } from './mail.js';
+import { toCsv } from './toFile.js'
+import { sendAttachedMail, sendMail } from './mail.js';
 
 const ms2s = (ms) => {
     let seconds = ms/1000
@@ -24,6 +24,7 @@ const getAuctionList = async () => {
             noHyphens: true,
             noNumbers: true
         }
+        console.log('Getting Namecheap Auction List')
         const data = await namecheapApiCall('sales', params);
         return data.items;
     } catch (error) {
@@ -52,6 +53,7 @@ const getAutctionById = async (id) => {
 }
 
 const main = async () => {
+
     try {
         let domainNames = await getAuctionList();
         let domains = domainNames.map(domain => ({ 
@@ -69,9 +71,10 @@ const main = async () => {
         }));
         let domainApproval = await getDomainHotOrNot(JSON.stringify(domains))
         let response = (domainApproval.choices[0].message)
-        let dataUrl = await toBase64(domainApproval.choices[0].message.content)
+        let dataUrl = await toCsv(domainApproval.choices[0].message.content)
         console.log({response: response, dataUrl: dataUrl})
-        await sendMail(process.env.SEND_TO, dataUrl)
+        // await sendMail(process.env.SEND_TO, dataUrl)
+        await sendAttachedMail(process.env.SEND_TO, dataUrl)
     } catch (error) {
         console.error(`Error: ${error.message}`);
     }
