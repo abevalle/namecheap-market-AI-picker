@@ -12,7 +12,7 @@ export const namecheapApiCall = async (endpoint, params = {}) => {
 
     query = query.slice(0, -1);
 
-    console.log('Making NameCheap API Call.')
+    process.stdout.write('Making NameCheap API Call.\r')
     const response = await fetch(query, {
         headers: { 'Authorization': process.env.NAMECHEAP_MARKET_API }
     });
@@ -20,7 +20,7 @@ export const namecheapApiCall = async (endpoint, params = {}) => {
     if (!response.ok) {
         throw new Error(`API call failed: ${response.status}`);
     }
-    console.log('Ok!')
+    console.log('Making NameCheap API Call...Ok')
     return await response.json();
 }
 

@@ -44,7 +44,7 @@ export const sendMail = async (reciever, dataUrl = "<p>Nothing Here</p>") => {
       attachments: [
         {
           filename: fileName,
-          content: toFile(dataUrl, fileName)
+          href: dataUrl
         }
       ]
     });
