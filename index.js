@@ -60,7 +60,6 @@ const main = async () => {
             name: domain.name,
             backlinksCount: domain.backlinksCount, 
             estibotValue: domain.estibotValue, 
-            keywordSearchCount: domain.keywordSearchCount, 
             renewPrice: domain.renewPrice, 
             bindInfo: {
                 startPrice: domain.startPrice,
