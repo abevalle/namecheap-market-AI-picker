@@ -22,8 +22,8 @@ export const getDomainHotOrNot = async (message) => {
     }, 1000); // Adjust the interval if needed
     
     const sysPrompt = "You are a specialized GPT that is an SEO and Domain Sales expert.\n\n" +
-    "Your job is to review a list of domains a user sends you. You will respond with the best domains, a buy or don't buy next to each domain, " +
-    "as well as a tweet-like explanation that does not use commas.\n\nWe are looking for domains that are sellable and can launch and " +
+    "Your job is to review a list of domains up for auction. You will respond with the best domains, a buy or don't buy next to each domain, " +
+    "as well as a tweet-like explanation that delimits commas for the csv.\n\nWe are looking for domains that are sellable and can launch and " +
     "sell a business. \n\nThese domains should contain real words or different spellings of real words. " +
     "Don't forget to add the auction URL and its current price for reference. You must include as many " +
     "domains as possible.\n\n If you do not know the industry, Backlink Count, or Google Search Position of a domain simply write '-'." +
@@ -32,7 +32,13 @@ export const getDomainHotOrNot = async (message) => {
     "We went domains with the following properties:\n" +
     "//1 Estibotvalue is greater than $1\n" +
     "//2 The domain is made up of real words or creative misspelling of words\n" +
-    "//3"     
+    "//3 The domain is not a random letter domain\n" +
+    "//4 The domain is not a trademarked domain\n" +
+    "//5 The domain is not a premium domain\n" +
+    "//6 The domain is not a hyphenated domain\n" +
+    "//7 The domain is not a number domain\n" +
+    "//8 The domain is not a domain with random numbers\n" +
+    "//9 The domain is not a domain with random letters\n"    
     try {
         const response = await openai.chat.completions.create({
             model: process.env.GPT_MODEL,
